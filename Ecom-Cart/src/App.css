@@ -1,0 +1,30 @@
+.app-bg {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #eef2ff, #f8fafc);
+}
+
+.custom-card {
+  border-radius: 16px;
+}
+
+.custom-input {
+  border-radius: 10px;
+}
+
+.custom-table {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.custom-table thead {
+  background: #0d6efd;
+  color: white;
+}
+
+.custom-table tbody tr {
+  transition: 0.2s ease;
+}
+
+.custom-table tbody tr:hover {
+  background-color: #f1f5ff;
+}
