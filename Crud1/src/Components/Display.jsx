@@ -1,4 +1,4 @@
-export const Display = ({ users=[]},addUser) => {
+export const Display = ({ users=[],addUser,deleteUser}) => {
 
   return (
     <>
@@ -29,6 +29,17 @@ export const Display = ({ users=[]},addUser) => {
                 <td>{user.email}</td>
 
                 <td>{user.phone}</td>
+
+
+                <td>
+                
+                  <button onClick={()=>deleteUser(index)}>
+                        Delete
+
+                    </button>
+
+
+                </td>
 
               </tr>
 

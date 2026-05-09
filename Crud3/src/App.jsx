@@ -1,37 +1,27 @@
 import { useState } from "react";
-
 import { Create } from "./Components/Create";
 import { Display } from "./Components/Display";
 
 const App = () => {
 
-  // MAIN DATA STORE
   const [users, setUsers] = useState([]);
 
-  // ADD FUNCTIONz
   const addUser = (userData) => {
 
     setUsers([...users, userData]);
 
   };
-  
 
-  //delete function
-
-  const deleteUser=(index)=>{
-    const filterData=users.filter((_,i)=>i!==index);
-    setUsers(filterData);
-  };
-
-
-
+  const deleteUser=(index)=>
+    {
+        const filterData=users.filter((_,i)=>i!==index);
+        setUsers(filterData)
+    }
   return (
     <>
-      {/* Function Send */}
       <Create addUser={addUser} />
 
-      {/* Data Send */}
-      <Display users={users} deleteUser={deleteUser}/>
+      <Display users={users} deleteUser={deleteUser} />
     </>
   );
 };
