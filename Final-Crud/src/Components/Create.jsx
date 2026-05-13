@@ -46,6 +46,8 @@ export const Create=({addstudent,updateStudent,editIndex,editdata})=>{
     <>
       <form onSubmit={handleSubmit}>
 
+        {/*  Search the data*/}
+
         <div className="mb-3">
           <label className="form-label">Name</label>
          <input

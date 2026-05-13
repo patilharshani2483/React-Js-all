@@ -1,72 +1,85 @@
 import { useState } from "react"
 import { Create } from "./Components/Create"
 import { Display } from "./Components/Display"
-import { List } from "./Components/List"
+
 import { Title } from "./Components/Title"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const App=()=>{
-//multiple div hoy tiyare <> use and array tempo data store used
+const App = () => {
+  //multiple div hoy tiyare <> use and array tempo data store used
+
+  //Step 1 — Add Search State in App.jsx
+  const [search, setSearch] = useState("")
 
 
-   var[students,setstudents]=useState([])
 
-   //index data
-   var[editIndex,setEditIndex]=useState(null)
+  var [students, setstudents] = useState([])
 
-   //updated data
-   var[editdata,setEditData]=useState({
-    user:"",
-    email:"",
-    phone:"",
-   });
+  //index data
+  var [editIndex, setEditIndex] = useState(null)
 
-//add 
-  const addstudent=(data)=>{
-    setstudents([...students,data]);
+  //updated data
+  var [editdata, setEditData] = useState({
+    user: "",
+    email: "",
+    phone: "",
+  });
+
+  //add 
+  const addstudent = (data) => {
+    setstudents([...students, data]);
 
   }
 
   //delete user
-  const deleteStudent=(index)=>
-  {
-    const newArray=students.filter((_,i)=> i!==index)
+  const deleteStudent = (index) => {
+    const newArray = students.filter((_, i) => i !== index)
     setstudents(newArray)
-    
+
   }
 
   //edit Button click]
-  const editStudent=(index)=>{
+  const editStudent = (index) => {
     setEditIndex(index);
     setEditData(students[index]);
   };
 
   //updated data
-  const updateStudent=(data)=>{
-    const updatedData=[...students];
-    updatedData[editIndex]=data;
+  const updateStudent = (data) => {
+    const updatedData = [...students];
+    updatedData[editIndex] = data;
     setstudents(updatedData)
     //Reset edit mode
     setEditIndex(null)
- 
+
     setEditData(
       {
-        user:"",
-        email:"",
-        phone:"",
+        user: "",
+        email: "",
+        phone: "",
       }
     )
 
   }
 
-       
-  return(
+  //Step 2 — Create Filter Data
+  const filterData = students.filter((data) =>
+    data.user.toLowerCase().includes(search.toLowerCase())
+  );
+
+  return (
     <>
-    <Title></Title>
-    <Create addstudent={addstudent} updateStudent={updateStudent} editIndex={editIndex} editdata=
-    {editdata}></Create>
-    <Display students={students} deleteStudent={deleteStudent} editStudent={editStudent}></Display>
-    <List></List>
+      <Title></Title>
+      <Create addstudent={addstudent} updateStudent={updateStudent} editIndex={editIndex} editdata=
+        {editdata}></Create>
+      <Display
+        students={filterData}
+        deleteStudent={deleteStudent}
+        editStudent={editStudent}
+        search={search}
+        setSearch={setSearch}
+      />
+
     </>
   )
 }

@@ -1,4 +1,4 @@
-export const Display = ({ students,deleteStudent,editStudent }) => {
+export const Display = ({ students, deleteStudent, editStudent, search, setSearch }) => {
 
   return (
 
@@ -8,14 +8,20 @@ export const Display = ({ students,deleteStudent,editStudent }) => {
 
         <thead className="table-dark">
 
+          <input
+            type="text"
+            placeholder="Search Student"
+            className="form-control mb-3"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+
           <tr>
             <th>No</th>
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
-            <th>Action
-            </th>
-            
+            <th>Action</th>
           </tr>
 
         </thead>
@@ -23,27 +29,46 @@ export const Display = ({ students,deleteStudent,editStudent }) => {
         <tbody>
 
           {
-            students.length>0 ?
-            students.map((data, index) => (
+            students.length > 0 ?
 
-              <tr key={index}>
+              students.map((data, index) => (
 
-                <td>{index + 1}</td>
-                <td>{data.user}</td>
-                <td>{data.email}</td>
-                <td>{data.phone}</td>
-                <td>
-                    <button onClick={()=>editStudent(index)}>Edit</button>
-                    <button onClick={()=>deleteStudent(index)}>Delete</button>
-                </td>
+                <tr key={index}>
+
+                  <td>{index + 1}</td>
+                  <td>{data.user}</td>
+                  <td>{data.email}</td>
+                  <td>{data.phone}</td>
+
+                  <td>
+
+                    <button
+                      className="btn btn-warning me-2"
+                      onClick={() => editStudent(index)}
+                    >
+                      Edit
+                    </button>
+
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => deleteStudent(index)}
+                    >
+                      Delete
+                    </button>
+
+                  </td>
+
+                </tr>
+
+              ))
+
+              :
+
+              <tr>
+
+                <td colSpan={5}>No Data Found</td>
 
               </tr>
-
-            ))
-            :
-            <tr>
-                <td colSpan={5}>No Data Found</td>
-            </tr>
           }
 
         </tbody>
